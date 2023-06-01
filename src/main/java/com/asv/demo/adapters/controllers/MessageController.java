@@ -24,7 +24,11 @@ public class MessageController {
     @GetMapping()
     public Flux<MessageResponse> findAll() {
         return messageService.findAll()
-                .map(MessageResponse::new);
+                .map(m -> MessageResponse.builder()
+                        .id(m.getId())
+                        .text(m.getText())
+                        .createdAt(m.getCreatedAt().toString())
+                        .build());
     }
 
     @PostMapping()
@@ -39,7 +43,11 @@ public class MessageController {
                 .findFirst()
                 .get();
         return messageService.save(message)
-                .map(MessageResponse::new);
+                .map(m -> MessageResponse.builder()
+                        .id(m.getId())
+                        .text(m.getText())
+                        .createdAt(m.getCreatedAt().toString())
+                        .build());
     }
 
 }

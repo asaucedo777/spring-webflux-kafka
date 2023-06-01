@@ -10,16 +10,15 @@ import reactor.core.publisher.Mono;
 
 @Service
 public class MessageService implements MessageUseCase {
-
     @Autowired
     ReactiveMongoMessageRepository reactiveMongoMessageRepository;
     @Override
     public Flux<Message> findAll() {
         return reactiveMongoMessageRepository.findAll();
     }
-
     @Override
     public Mono<Message> save(Message message) {
         return reactiveMongoMessageRepository.save(message);
     }
+
 }
