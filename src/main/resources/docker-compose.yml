@@ -1,0 +1,23 @@
+version: "3"
+services:
+  db-mongo:
+    hostname: localhost
+    container_name: 'mongo'
+    image: 'mongo:latest'
+    expose:
+      - 27017
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_DATABASE=test
+      - MONGO_INITDB_ROOT_USERNAME=test
+      - MONGO_INITDB_ROOT_PASSWORD=test
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js
+#  micro-service-demo:
+#    image: demo:0.0.1-SNAPSHOT
+#    container_name: "demo-container"
+#    ports:
+#      - 8085:8085
+#    depends_on:
+#      - mongo-service
